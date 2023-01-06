@@ -6,7 +6,7 @@
   - [x] Create 3 prefabs for tower
   - [x] Create 3 prefabs for creature
 - [ ] Creature/Wave Behaviour:
-  - [ ] Add Bezier path package
+  - [x] Add Bezier path package
   - [ ] Movement of creature
   - [ ] Spawn/Wave/Die system
   - [ ] Win/Lose/Restart system
@@ -28,4 +28,4 @@
 
 
 ### Third Party
-- Bezier: 
+- Bezier: https://github.com/yasirkula/UnityBezierSolution
