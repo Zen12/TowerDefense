@@ -24,6 +24,7 @@
   - [ ] UI/Lose/Restart
   - [ ] Currency
   - [ ] AppState
+  - [ ] Tutorial to place one tower
   - [ ] Build for WebGL
 
 
