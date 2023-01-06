@@ -2,7 +2,7 @@
 - [ ] Project and assets:
   - [x] Find/Integrate assets for TD and creatures
   - [x] Find/Integrate base UI sprites
-  - [ ] Create a scene/map
+  - [x] Create a scene/map
   - [ ] Create 3 prefabs for tower
   - [ ] Create 3 prefabs for creature
 - [ ] Creature/Wave Behaviour:
