@@ -10,13 +10,13 @@ namespace _Project.Scripts.SpawnSystems
     {
         public int CurrentWave { get; private set; }
         public bool IsFinishAllWaves { get; private set; }
-        
+        public bool IsSpawning { get; private set; }
+
         private readonly WaveSettings _settings;
         private readonly IUnitFabric _fabric;
 
         private readonly List<IUnit> _list = new List<IUnit>();
 
-        private bool _isSpawning;
 
         private CancellationToken _token;
 
@@ -30,7 +30,7 @@ namespace _Project.Scripts.SpawnSystems
 
         public void Update()
         {
-            if (_isSpawning)
+            if (IsSpawning)
                 return;
             
             if (IsAtLeastOneAlive())
@@ -48,7 +48,7 @@ namespace _Project.Scripts.SpawnSystems
                 _list.Clear();
             }
 
-            _isSpawning = true;
+            IsSpawning = true;
             _ = SpawnAsync();
         }
 
@@ -58,7 +58,7 @@ namespace _Project.Scripts.SpawnSystems
             if (CurrentWave >= _settings.Waves.Count)
             {
                 IsFinishAllWaves = true;
-                _isSpawning = false;
+                IsSpawning = false;
                 return;
             }
 
@@ -73,7 +73,7 @@ namespace _Project.Scripts.SpawnSystems
                     break;
             }
             
-            _isSpawning = false;
+            IsSpawning = false;
         }
         
 

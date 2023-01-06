@@ -44,6 +44,55 @@ namespace _Project.Scripts.SpawnSystems.Editor
             // Should
             Assert.IsTrue(wave.IsFinishAllWaves);
         }
+        
+        [UnityTest]
+        public IEnumerator GIVEN_2_WAVEs__START_WAVESYSTEM__SHOULD_FINISH_1ST_AFTER_ALL_DEAD()
+        {
+            // Given
+            var settings = new WaveSettings
+            {
+                Waves = new List<Wave>
+                {
+                    new Wave
+                    {
+                        Amount = 2,
+                        Delay = 0.2f,
+                        Type = 0
+                    },
+                    new Wave
+                    {
+                        Amount = 2,
+                        Delay = 0.2f,
+                        Type = 1
+                    }
+                }
+            };
+            var fabric = new DummyFabric(true);
+            var wave = new WaveController(settings, fabric, CancellationToken.None);
+            
+            
+            // Act
+            wave.Update();
+            while (wave.IsSpawning) // wait until it spawns
+            {
+                yield return null;
+            }
+            
+            Assert.AreEqual(0, wave.CurrentWave); // Not finish because didn't kill
+
+            foreach (var unit in fabric.Units) // kill all units
+            {
+                unit.IsAlive = false;
+            }
+
+            yield return null;
+            wave.Update();
+            yield return null;
+
+            
+            // Should
+            Assert.AreEqual(1, wave.CurrentWave);
+        }
 
     }
 
