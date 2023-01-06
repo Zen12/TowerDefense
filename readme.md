@@ -1,7 +1,7 @@
 ### TODO:
 - [ ] Project and assets:
-  - [ ] Find/Integrate assets for TD and creatures
-  - [ ] Find/Integrate base UI sprites
+  - [x] Find/Integrate assets for TD and creatures
+  - [x] Find/Integrate base UI sprites
   - [ ] Create a scene/map
   - [ ] Create 3 prefabs for tower
   - [ ] Create 3 prefabs for creature
