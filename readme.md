@@ -1,10 +1,10 @@
 ### TODO:
-- [ ] Project and assets:
+- [x] Project and assets:
   - [x] Find/Integrate assets for TD and creatures
   - [x] Find/Integrate base UI sprites
   - [x] Create a scene/map
-  - [ ] Create 3 prefabs for tower
-  - [ ] Create 3 prefabs for creature
+  - [x] Create 3 prefabs for tower
+  - [x] Create 3 prefabs for creature
 - [ ] Creature/Wave Behaviour:
   - [ ] Add Bezier path package
   - [ ] Movement of creature
