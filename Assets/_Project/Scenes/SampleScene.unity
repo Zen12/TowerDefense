@@ -1102,6 +1102,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 268517544}
+  - component: {fileID: 268517545}
   m_Layer: 0
   m_Name: MovementBezier
   m_TagString: Untagged
@@ -1124,6 +1125,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &268517545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268517543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3af931ec0102f4d1ca520d5e775fc6cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spline: {fileID: 425086572}
 --- !u!1001 &326509083
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3333,6 +3347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fca1b26a5954d33a24290680a1ca76e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _path: {fileID: 268517545}
 --- !u!1 &902982869
 GameObject:
   m_ObjectHideFlags: 0
