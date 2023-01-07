@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using _Project.Scripts.Movables;
 
 namespace _Project.Scripts.SpawnSystems
 {
@@ -17,14 +18,18 @@ namespace _Project.Scripts.SpawnSystems
 
         private readonly List<IUnit> _list = new List<IUnit>();
 
+        private readonly IWaveListener _listener;
+
 
         private CancellationToken _token;
 
-        public WaveController(WaveSettings settings, IUnitFabric fabric, CancellationToken token)
+        public WaveController(WaveSettings settings, IUnitFabric fabric, CancellationToken token, 
+            IWaveListener listener)
         {
             _settings = settings;
             _fabric = fabric;
             _token = token;
+            _listener = listener;
             CurrentWave = -1; //not started
         }
 
@@ -71,7 +76,8 @@ namespace _Project.Scripts.SpawnSystems
             {
                 var obj = _fabric.CreateUnit(wave.Type);
                 _list.Add(obj);
-                await Task.Delay(TimeSpan.FromSeconds(wave.Delay));
+                _listener.OnCreateUnit(obj);
+                await Task.Delay(TimeSpan.FromSeconds(wave.Delay), _token);
                 if (_token.IsCancellationRequested)
                     break;
             }
@@ -92,6 +98,11 @@ namespace _Project.Scripts.SpawnSystems
 
             return false;
         }
+    }
+
+    public interface IWaveListener
+    {
+        void OnCreateUnit(IUnit unit);
     }
 
     public interface IUnitFabric

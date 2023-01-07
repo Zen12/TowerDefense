@@ -27,7 +27,7 @@ namespace _Project.Scripts.SpawnSystems.Editor
                 }
             };
             var fabric = new DummyFabric();
-            var wave = new WaveController(settings, fabric, CancellationToken.None);
+            var wave = new WaveController(settings, fabric, CancellationToken.None, new DummyListener());
             
             
             // Act
@@ -43,6 +43,42 @@ namespace _Project.Scripts.SpawnSystems.Editor
             
             // Should
             Assert.IsTrue(wave.IsFinishAllWaves);
+        }
+        
+        [UnityTest]
+        public IEnumerator GIVEN_1_WAVE__START_WAVESYSTEM__SHOULD_CALL_LISTENER()
+        {
+            // Given
+            var settings = new WaveSettings
+            {
+                Waves = new List<Wave>
+                {
+                    new Wave
+                    {
+                        Amount = 1,
+                        Delay = 0.2f,
+                        Type = 0
+                    }
+                }
+            };
+            var fabric = new DummyFabric();
+            var listener = new DummyListener();
+            var wave = new WaveController(settings, fabric, CancellationToken.None,listener);
+            
+            
+            // Act
+            var times = 0;
+            while (wave.IsFinishAllWaves == false)
+            {
+                wave.Update();
+                yield return null;
+                times++;
+                if (times > 10000)
+                    throw new Exception("Entered while true");
+            }
+            
+            // Should
+            Assert.IsNotNull(listener.Unit);
         }
         
         [UnityTest]
@@ -68,7 +104,7 @@ namespace _Project.Scripts.SpawnSystems.Editor
                 }
             };
             var fabric = new DummyFabric(true);
-            var wave = new WaveController(settings, fabric, CancellationToken.None);
+            var wave = new WaveController(settings, fabric, CancellationToken.None, new DummyListener());
             
             
             // Act

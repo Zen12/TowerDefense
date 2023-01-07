@@ -32,5 +32,14 @@ namespace _Project.Scripts.SpawnSystems.Editor
         public bool IsAlive { get; set; } = false;
     }
 
+    internal class DummyListener : IWaveListener
+    {
+        public IUnit Unit;
+        public void OnCreateUnit(IUnit unit)
+        {
+            Unit = unit;
+        }
+    }
+
 
 }
