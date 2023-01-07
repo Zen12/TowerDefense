@@ -10,5 +10,11 @@ namespace _Project.Scripts.Unity
         {
             return _spline.GetPoint(time);
         }
+
+        public float GetTime(Vector3 position)
+        {
+            _spline.FindNearestPointToLine(position, position, out _, out var time);
+            return time;
+        }
     }
 }

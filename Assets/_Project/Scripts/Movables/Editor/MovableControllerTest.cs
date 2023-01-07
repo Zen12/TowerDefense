@@ -45,7 +45,7 @@ namespace _Project.Scripts.Movables.Editor
             var path = new DummyPath();
             var controller = new MovableController(path, listener);
             var movable = new DummyMovable();
-            controller.RegisterMovable(movable, 1f);
+            controller.RegisterMovable(movable, 0.5f);
             
             // Act
             controller.Update(0.5f);
@@ -83,7 +83,8 @@ namespace _Project.Scripts.Movables.Editor
             controller.RegisterMovable(new DummyMovable(), 1f);
             
             // Act
-            controller.Update(1.1f);
+            controller.Update(0.4f);
+            controller.Update(0.4f);
             
             // Should
             Assert.AreEqual(1, listener.Movable.Count);

@@ -16,6 +16,11 @@ namespace _Project.Scripts.Movables.Editor
         {
             return Vector3.forward * time;
         }
+
+        public float GetTime(Vector3 position)
+        {
+            return position.z;
+        }
     }
 
     internal class DummyListener : IMoveControllerListener

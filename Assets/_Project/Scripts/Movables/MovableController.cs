@@ -17,11 +17,12 @@ namespace _Project.Scripts.Movables
 
         public void RegisterMovable(IMovable movable, float speed)
         {
+            movable.Position = _path.GetPositionFromTime(0);
             _list.Add(new MovableData
             {
                 Speed = speed,
                 Target = movable,
-                Time = 0f
+                NeedToRemove = false
             });
         }
 
@@ -29,20 +30,23 @@ namespace _Project.Scripts.Movables
         {
             foreach (var data in _list)
             {
-                data.Time += deltaTime * data.Speed;
-                if (data.Time >= 1f)
+                var time = _path.GetTime(data.Target.Position);
+                if (time >= 1 - deltaTime - float.Epsilon)
                 {
                     data.Target.Position = _path.GetPositionFromTime(1f);
+                    data.NeedToRemove = true;
                     _listener.OnFinishMovable(data.Target);
                     continue;
                 }
-                var target = _path.GetPositionFromTime(data.Time);
-                var dir = (target - data.Target.Position).normalized;
-                data.Target.Position += target;
+
+                var nexTime = time + deltaTime;
+                var nextPos = _path.GetPositionFromTime(nexTime);
+                var dir = (nextPos - data.Target.Position).normalized;
+                data.Target.Position += dir * data.Speed;
                 data.Target.Rotation = Quaternion.LookRotation(dir);
             }
 
-            _list.RemoveAll(_ => _.Time >= 1f);
+            _list.RemoveAll(_ => _.NeedToRemove);
         }
     }
     
@@ -50,13 +54,14 @@ namespace _Project.Scripts.Movables
     internal sealed class MovableData
     {
         public IMovable Target;
-        public float Time;
         public float Speed;
+        public bool NeedToRemove;
     }
 
     public interface IPath
     {
         public Vector3 GetPositionFromTime(in float time);
+        public float GetTime(Vector3 position);
     }
 
     public interface IMoveControllerListener
