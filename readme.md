@@ -7,8 +7,8 @@
   - [x] Create 3 prefabs for creature
 - [ ] Creature/Wave Behaviour:
   - [x] Add Bezier path package
-  - [ ] Movement of creature
-  - [ ] Spawn/Wave/Die system
+  - [x] Movement of creature
+  - [x] Spawn/Wave system
   - [ ] Win/Lose/Restart system
 - [ ] Tower Behaviour
   - [ ] Place/Spawn with visual assistant
