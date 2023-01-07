@@ -57,7 +57,24 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: c269a33914bf64f3d8ea57891ab72f09, type: 2}
     - target: {fileID: 919132149155446097, guid: a3c16cf92dc784f3182f85aa0dd63b71, type: 3}
       propertyPath: m_Name
-      value: enemy_ufoPurple Variant
+      value: Level_3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3c16cf92dc784f3182f85aa0dd63b71, type: 3}
+--- !u!1 &4340208968070821101 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a3c16cf92dc784f3182f85aa0dd63b71, type: 3}
+  m_PrefabInstance: {fileID: 3529393697380518332}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-8366547598422044413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4340208968070821101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b8e98f291844116b3d9c510015fb526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

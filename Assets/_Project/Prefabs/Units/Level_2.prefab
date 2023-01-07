@@ -57,7 +57,24 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: c269a33914bf64f3d8ea57891ab72f09, type: 2}
     - target: {fileID: 919132149155446097, guid: 7aad2f6aea42640779948e28a18c2d50, type: 3}
       propertyPath: m_Name
-      value: enemy_ufoRed Variant
+      value: Level_2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7aad2f6aea42640779948e28a18c2d50, type: 3}
+--- !u!1 &6691022175531655999 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7aad2f6aea42640779948e28a18c2d50, type: 3}
+  m_PrefabInstance: {fileID: 5771962045463158382}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2431633368821500118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6691022175531655999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b8e98f291844116b3d9c510015fb526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

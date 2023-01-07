@@ -1,8 +1,9 @@
+using _Project.Scripts.Movables;
 using UnityEngine;
 
-namespace _Project.Scripts.Movables
+namespace _Project.Scripts.Unity
 {
-    public class UnityEngineBezierPathAdapter : MonoBehaviour, IPath
+    public class PathAdapter : MonoBehaviour, IPath
     {
         [SerializeField] private BezierSolution.BezierSpline _spline;
         public Vector3 GetPositionFromTime(in float time)
