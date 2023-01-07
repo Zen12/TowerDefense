@@ -2,12 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using _Project.Scripts.Movables;
 
 namespace _Project.Scripts.SpawnSystems
 {
 
-    public sealed class WaveController
+    public sealed class WaveController : IUpdatable
     {
         public int CurrentWave { get; private set; }
         public bool IsFinishAllWaves { get; private set; }

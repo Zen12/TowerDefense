@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace _Project.Scripts.Movables
 {
-    public sealed class MovableController
+    public sealed class MovableController : IUpdatable
     {
         private readonly IPath _path;
         private readonly List<MovableData> _list = new List<MovableData>();
