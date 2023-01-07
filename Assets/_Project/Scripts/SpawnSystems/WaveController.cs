@@ -30,6 +30,9 @@ namespace _Project.Scripts.SpawnSystems
 
         public void Update()
         {
+            if (IsFinishAllWaves)
+                return;
+            
             if (IsSpawning)
                 return;
             
