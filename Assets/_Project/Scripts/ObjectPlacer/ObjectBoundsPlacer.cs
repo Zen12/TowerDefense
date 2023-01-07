@@ -3,12 +3,13 @@ using UnityEngine;
 
 namespace _Project.Scripts.ObjectPlacer
 {
-    public sealed class ObjectPlacer
+    public sealed class ObjectBoundsPlacer
     {
         private Bounds _bounds;
+        public Bounds Bounds => _bounds;
         private readonly List<IPlaceable> _list = new List<IPlaceable>();
 
-        public ObjectPlacer(Bounds bounds)
+        public ObjectBoundsPlacer(Bounds bounds)
         {
             _bounds = bounds;
         }

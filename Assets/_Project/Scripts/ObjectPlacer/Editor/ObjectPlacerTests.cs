@@ -9,7 +9,7 @@ namespace _Project.Scripts.ObjectPlacer.Editor
         public void GIVEN_PLACER__ADD_OBJECT__SHOULD_ADD()
         {
             // Given
-            var placer = new ObjectPlacer(new Bounds(Vector3.zero, Vector3.one));
+            var placer = new ObjectBoundsPlacer(new Bounds(Vector3.zero, Vector3.one));
             var p1 = new DummyPlaceable();
             p1.Position = Vector3.zero;
             p1.Bounds = new Bounds(Vector3.zero, Vector3.one * 0.1f);
@@ -26,7 +26,7 @@ namespace _Project.Scripts.ObjectPlacer.Editor
         public void GIVEN_PLACER__ADD_2_OBJECTS__SHOULD_ADD()
         {
             // Given
-            var placer = new ObjectPlacer(new Bounds(Vector3.zero, Vector3.one * 20f));
+            var placer = new ObjectBoundsPlacer(new Bounds(Vector3.zero, Vector3.one * 20f));
             var p1 = new DummyPlaceable();
             p1.Position = Vector3.zero;
             p1.Bounds = new Bounds(Vector3.zero, Vector3.one * 0.1f);
@@ -50,7 +50,7 @@ namespace _Project.Scripts.ObjectPlacer.Editor
         public void GIVEN_PLACER__ADD__OBJECT_OUTOFBOUNDS__SHOULD_NOT_ADD()
         {
             // Given
-            var placer = new ObjectPlacer(new Bounds(Vector3.zero, Vector3.one));
+            var placer = new ObjectBoundsPlacer(new Bounds(Vector3.zero, Vector3.one));
             var p1 = new DummyPlaceable();
             p1.Position = Vector3.one * 30000f;
             p1.Bounds = new Bounds(Vector3.one * 30000f, Vector3.one * 0.1f);

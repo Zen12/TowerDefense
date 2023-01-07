@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5662568925658101606}
+  - component: {fileID: -4192838574169490643}
   m_Layer: 0
   m_Name: Pierce
   m_TagString: Untagged
@@ -32,6 +33,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-4192838574169490643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569115583874515518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098a6922c423144fe84ec693f2f5d2c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 4069899820136928112}
+  _startColor: {r: 0.94509804, g: 0.23529412, b: 0.23529412, a: 1}
 --- !u!1001 &3439243730292477940
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -104,6 +119,11 @@ PrefabInstance:
 --- !u!4 &2895845956990789663 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5e5e24a2bb6bc48e6b802edae4a28a45, type: 3}
+  m_PrefabInstance: {fileID: 3439243730292477940}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &4069899820136928112 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 5e5e24a2bb6bc48e6b802edae4a28a45, type: 3}
   m_PrefabInstance: {fileID: 3439243730292477940}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7561822019581778240
