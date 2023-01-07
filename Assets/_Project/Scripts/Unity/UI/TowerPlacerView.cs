@@ -19,6 +19,9 @@ namespace _Project.Scripts.Unity.UI
         
         public void OnSelect()
         {
+            if (Input.GetMouseButtonDown(0) == false)
+                return;
+            
             _onSelect?.Invoke(_item);
         }
     }

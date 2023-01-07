@@ -5,12 +5,17 @@ using UnityEngine;
 
 namespace _Project.Scripts.Unity
 {
-    public class UnitFabric : MonoBehaviour, IUnitFabric
+    public sealed class UnitFabric : IUnitFabric
     {
-        [SerializeField] private UnitConfig _config;
+        private UnitConfig _config;
 
         private readonly Dictionary<int, List<UnitView>> _cache 
             = new Dictionary<int, List<UnitView>>();
+
+        public UnitFabric(UnitConfig config)
+        {
+            _config = config;
+        }
 
         public IUnit CreateUnit(int type)
         {
@@ -29,7 +34,7 @@ namespace _Project.Scripts.Unity
             
             // Create NewONe
             var p = _config.Prefabs[type];
-            var obj = Instantiate(p);
+            var obj = GameObject.Instantiate(p);
             return obj;
         }
 
@@ -40,7 +45,12 @@ namespace _Project.Scripts.Unity
                 _cache.Add(type, new List<UnitView>());
             }
             var list = _cache[type];
-            list.Add((UnitView) obj);
+            var o = (UnitView)obj;
+            if (o != null)
+            {
+                o.gameObject.SetActive(false);
+                list.Add(o);
+            }
         }
     }
 }

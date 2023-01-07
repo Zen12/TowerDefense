@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using _Project.Scripts.Database;
 using _Project.Scripts.Gameplay;
 using _Project.Scripts.Movables;
 using _Project.Scripts.SpawnSystems;
@@ -13,9 +14,9 @@ namespace _Project.Scripts
     public class EntryPoint : MonoBehaviour
     {
         [SerializeField] private WaveSettings _settings;
+        [SerializeField] private UnitConfig _unitConfig;
         
         [SerializeField] private PathAdapter _path;
-        [SerializeField] private UnitFabric _fabric;
         [SerializeField] private PlaceForTower _placeForTower;
         [SerializeField] private Camera _camera;
         [SerializeField] private LayerMask _placeMask;
@@ -32,7 +33,8 @@ namespace _Project.Scripts
             var router = new RouterWaveToMovable();
             var winLose = new WinLoseChecker(20);
             var move = new MovableController(_path, winLose);
-            var wave = new WaveController(_settings, _fabric, _token.Token);
+            var unitFabric = new UnitFabric(_unitConfig);
+            var wave = new WaveController(_settings, unitFabric, _token.Token);
             var place = new ObjectPlacer.ObjectBoundsPlacer(_placeForTower.GetBounds());
             var unityPlacer = new TowerPlacerUnityController(place, _camera, _placeMask);
             

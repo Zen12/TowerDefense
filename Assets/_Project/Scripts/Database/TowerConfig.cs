@@ -1,3 +1,4 @@
+using _Project.Scripts.Tower;
 using _Project.Scripts.Unity;
 using UnityEngine;
 
@@ -12,7 +13,15 @@ namespace _Project.Scripts.Database
     [System.Serializable]
     public sealed class TowerItem
     {
+        public TowerStats Stats;
+        public TowerType Type;
         public TowerView Tower;
         public Sprite Preview;
+    }
+
+    [System.Serializable]
+    public enum TowerType
+    {
+        Pierce, AoeDamage, AoeSlow
     }
 }

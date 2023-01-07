@@ -1,12 +1,24 @@
+using System;
 using _Project.Scripts.Movables;
 using _Project.Scripts.SpawnSystems;
+using _Project.Scripts.Tower;
 using UnityEngine;
 
 namespace _Project.Scripts.Unity
 {
-    public class UnitView : MonoBehaviour, IUnit, IMovable
+    public class UnitView : MonoBehaviour, IUnit, IMovable, IDamageable
     {
-        public bool IsAlive { get; private set; }
+        [SerializeField] private float _hp = 10;
+        public bool IsAlive => _hp > 0f;
+
+        public void TakeDamage(in float amount)
+        {
+            _hp -= amount;
+        }
+
+        public void SlowDown(in float time)
+        {
+        }
 
         public Vector3 Position
         {

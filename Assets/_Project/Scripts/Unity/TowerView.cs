@@ -1,5 +1,6 @@
 using System;
 using _Project.Scripts.ObjectPlacer;
+using _Project.Scripts.Tower;
 using UnityEngine;
 
 namespace _Project.Scripts.Unity
@@ -7,9 +8,13 @@ namespace _Project.Scripts.Unity
     public sealed class TowerView : MonoBehaviour, IPlaceable
     {
         [SerializeField] private Renderer _renderer;
-        private MaterialPropertyBlock _block;
         [SerializeField] private Color _startColor;
+        [SerializeField] private SphereCollider _trigger;
+
+        private MaterialPropertyBlock _block;
         private static readonly int ColorId = Shader.PropertyToID("_Color");
+        private static Collider[] _colliders = new Collider[30];
+        private BaseTower _tower;
 
 
         public Vector3 Position
@@ -49,6 +54,50 @@ namespace _Project.Scripts.Unity
             _block.SetColor(ColorId, color);
             _renderer.SetPropertyBlock(_block);
         }
+        
 
+        public void Init(BaseTower tower)
+        {
+            _tower = tower;
+            _trigger.radius = _tower.CurrentAttackDistance;
+
+            // if it was placed when it is running the wave, at Trigger Enter may not be executed
+            var size = Physics.OverlapSphereNonAlloc(_tr.position, _tower.CurrentAttackDistance, _colliders);
+            for (int i = 0; i < size; i++)
+            {
+                OnTriggerEnter(_colliders[i]);
+            }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (_tower == null)
+                return;
+
+            var c = other.GetComponent<IDamageable>();
+            if (c != null)
+            {
+                _tower.Add(c);
+            }
+        }
+        
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (_tower == null)
+                return;
+            
+            var c = other.GetComponent<IDamageable>();
+            if (c != null)
+            {
+                _tower.Remove(c);
+            }
+        }
+
+        private void Update()
+        {
+            if (_tower != null)
+                _tower.Update(Time.deltaTime);
+        }
     }
 }

@@ -12,7 +12,7 @@ namespace _Project.Scripts.Tower
         {
             foreach (var damageable in list)
             {
-                damageable.SlowDown(_stats.Damage, _stats.Time);
+                damageable.SlowDown(_stats.SlowTime);
             }
         }
     }

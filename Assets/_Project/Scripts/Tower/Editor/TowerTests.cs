@@ -12,7 +12,7 @@ namespace _Project.Scripts.Tower.Editor
             var tower = new AttackOneUnitTower(new TowerStats
             {
                 Damage = 10,
-                Delay = 1f
+                DelayExecution = 1f
             });
 
             var damageable = new DummyDamageable();
@@ -33,7 +33,7 @@ namespace _Project.Scripts.Tower.Editor
             var tower = new AttackOneUnitTower(new TowerStats
             {
                 Damage = 10,
-                Delay = 1f
+                DelayExecution = 1f
             });
 
             var damageable = new DummyDamageable();
@@ -55,7 +55,7 @@ namespace _Project.Scripts.Tower.Editor
             var tower = new AttackAoeTower(new TowerStats
             {
                 Damage = 10,
-                Delay = 1f,
+                DelayExecution = 1f,
                 AoeRange = 2f
             });
 
@@ -82,7 +82,7 @@ namespace _Project.Scripts.Tower.Editor
             var tower = new AttackAoeTower(new TowerStats
             {
                 Damage = 10,
-                Delay = 1f,
+                DelayExecution = 1f,
                 AoeRange = 2f
             });
 
@@ -109,9 +109,9 @@ namespace _Project.Scripts.Tower.Editor
             var tower = new SlowAoeTower(new TowerStats
             {
                 Damage = 10,
-                Delay = 1f,
+                DelayExecution = 1f,
                 AoeRange = 2f,
-                Time = 2f
+                SlowTime = 2f
             });
 
             var d1 = new DummyDamageable();
@@ -123,7 +123,6 @@ namespace _Project.Scripts.Tower.Editor
             
             
             // Should
-            Assert.AreEqual(10, d1.LastDamageAmount);
             Assert.AreEqual(2f, d1.LastSlowTime);
         }
 
@@ -144,9 +143,8 @@ namespace _Project.Scripts.Tower.Editor
             LastDamageAmount = amount;
         }
 
-        public void SlowDown(in float amount, in float time)
+        public void SlowDown(in float time)
         {
-            LastDamageAmount = amount;
             LastSlowTime = time;
         }
 

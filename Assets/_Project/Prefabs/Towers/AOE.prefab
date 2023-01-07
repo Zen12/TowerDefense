@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4288514565969187354}
   - component: {fileID: 4160399096032104462}
+  - component: {fileID: 8532209252806727108}
   m_Layer: 0
   m_Name: AOE
   m_TagString: Untagged
@@ -47,6 +48,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _renderer: {fileID: 5579275474038339084}
   _startColor: {r: 0.94509804, g: 0.23529412, b: 0.23529412, a: 1}
+  _trigger: {fileID: 8532209252806727108}
+--- !u!135 &8532209252806727108
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8283041872940656450}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &6524903405088070762
 PrefabInstance:
   m_ObjectHideFlags: 0

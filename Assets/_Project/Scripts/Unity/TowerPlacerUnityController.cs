@@ -1,5 +1,7 @@
+using System;
 using _Project.Scripts.Database;
 using _Project.Scripts.ObjectPlacer;
+using _Project.Scripts.Tower;
 using _Project.Scripts.Unity.UI;
 using UnityEngine;
 
@@ -12,6 +14,7 @@ namespace _Project.Scripts.Unity
         private bool _isSelected;
         private readonly LayerMask _mask;
         private TowerView _view;
+        private TowerItem _item;
 
         public TowerPlacerUnityController(ObjectBoundsPlacer boundsPlacer, Camera camera, LayerMask mask)
         {
@@ -22,6 +25,7 @@ namespace _Project.Scripts.Unity
         
         public void OnSelectTower(TowerItem item)
         {
+            _item = item;
             _isSelected = true;
             _view = GameObject.Instantiate(item.Tower);
         }
@@ -33,33 +37,62 @@ namespace _Project.Scripts.Unity
 
             if (Input.GetMouseButtonUp(0))
             {
-                //place object
-                _isSelected = false;
-                if (_placer.Place(_view))
-                {
-                    _view.SetPlace();
-                }
-                else
-                {
-                    GameObject.Destroy(_view.gameObject);
-                    _view = null;
-                }
+                SetPlace();
                 return;
             }
 
             if (Input.GetMouseButton(0))
             {
-                if (Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out var raycastHi, float.MaxValue, _mask))
+                MoveTower();
+            }
+        }
+
+        private void ResetView()
+        {
+            GameObject.Destroy(_view.gameObject);
+            _view = null;
+            _item = null;
+        }
+
+        private void SetPlace()
+        {
+            _isSelected = false;
+            if (_placer.Place(_view))
+            {
+                _view.SetPlace();
+                switch (_item.Type)
                 {
-                    _view.transform.position = raycastHi.point;
-                    if (_placer.IsAbleToPlace(raycastHi.point))
-                    {
-                        _view.SetPossibleToPlace();
-                    }
-                    else
-                    {
-                        _view.SetImpossibleToPlace();
-                    }
+                    case TowerType.Pierce:
+                        _view.Init(new AttackOneUnitTower(_item.Stats));
+                        break;
+                    case TowerType.AoeDamage:
+                        _view.Init(new AttackAoeTower(_item.Stats));
+                        break;
+                    case TowerType.AoeSlow:
+                        _view.Init(new SlowAoeTower(_item.Stats));
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+            else
+            {
+                ResetView();
+            }
+        }
+
+        private void MoveTower()
+        {
+            if (Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out var raycastHi, float.MaxValue, _mask))
+            {
+                _view.transform.position = raycastHi.point;
+                if (_placer.IsAbleToPlace(raycastHi.point))
+                {
+                    _view.SetPossibleToPlace();
+                }
+                else
+                {
+                    _view.SetImpossibleToPlace();
                 }
             }
         }
