@@ -27,14 +27,14 @@ namespace _Project.Scripts.SpawnSystems.Editor
                 }
             };
             var fabric = new DummyFabric();
-            var wave = new WaveController(settings, fabric, CancellationToken.None, new DummyListener());
+            var wave = new WaveController(settings, fabric, CancellationToken.None);
             
             
             // Act
             var times = 0;
             while (wave.IsFinishAllWaves == false)
             {
-                wave.Update();
+                wave.Update(0.1f);
                 yield return null;
                 times++;
                 if (times > 10000)
@@ -62,15 +62,16 @@ namespace _Project.Scripts.SpawnSystems.Editor
                 }
             };
             var fabric = new DummyFabric();
-            var listener = new DummyListener();
-            var wave = new WaveController(settings, fabric, CancellationToken.None,listener);
+            var listener = new DummyUnitListener();
+            var wave = new WaveController(settings, fabric, CancellationToken.None);
+            wave.RegisterListener(listener);
             
             
             // Act
             var times = 0;
             while (wave.IsFinishAllWaves == false)
             {
-                wave.Update();
+                wave.Update(0.1f);
                 yield return null;
                 times++;
                 if (times > 10000)
@@ -104,11 +105,11 @@ namespace _Project.Scripts.SpawnSystems.Editor
                 }
             };
             var fabric = new DummyFabric(true);
-            var wave = new WaveController(settings, fabric, CancellationToken.None, new DummyListener());
+            var wave = new WaveController(settings, fabric, CancellationToken.None);
             
             
             // Act
-            wave.Update();
+            wave.Update(0.1f);
             while (wave.IsSpawning) // wait until it spawns
             {
                 yield return null;
@@ -122,7 +123,7 @@ namespace _Project.Scripts.SpawnSystems.Editor
             }
 
             yield return null;
-            wave.Update();
+            wave.Update(0.1f);
             yield return null;
 
             

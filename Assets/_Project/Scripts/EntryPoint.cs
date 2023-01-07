@@ -18,21 +18,28 @@ namespace _Project.Scripts
         private CancellationTokenSource _token;
 
         private GameplayController _gamePlay;
+        private WaveController _wave;
+        private MovableController _move;
         
         private void Awake()
         {
             _token = new CancellationTokenSource();
-            _gamePlay = new GameplayController(_token.Token);
+            _gamePlay = new GameplayController();
+            var winLose = new WinLoseChecker(20);
             
-            var movable = new MovableController(_path, _gamePlay);
-            var wave = new WaveController(_settings, _fabric, _token.Token, _gamePlay);
+            _move = new MovableController(_path, winLose);
+            _wave = new WaveController(_settings, _fabric, _token.Token);
+            _wave.RegisterListener(_gamePlay);
+            _wave.RegisterListener(winLose);
             
-            _gamePlay.Init(movable, wave);
+            _gamePlay.Init(_move);
         }
 
         private void Update()
         {
-            _gamePlay.Update(Time.deltaTime);
+            var deltaTime = Time.deltaTime;
+            _move.Update(deltaTime);
+            _wave.Update(deltaTime);
         }
 
         private void OnDestroy()
