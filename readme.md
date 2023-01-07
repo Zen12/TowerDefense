@@ -11,7 +11,7 @@
   - [x] Spawn/Wave system
   - [x] Win/Lose system
 - [ ] Tower Behaviour
-  - [ ] Place/Spawn with visual assistant
+  - [x] Place/Spawn with visual assistant
   - [ ] Attack 
     - [ ] Pierce
     - [ ] AOE-Damage
