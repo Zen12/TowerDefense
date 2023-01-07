@@ -15,6 +15,7 @@ namespace _Project.Scripts
         
         [SerializeField] private PathAdapter _path;
         [SerializeField] private UnitFabric _fabric;
+        [SerializeField] private PlaceForTower _placeForTower;
 
         private CancellationTokenSource _token;
 
@@ -28,6 +29,7 @@ namespace _Project.Scripts
             var winLose = new WinLoseChecker(20);
             var move = new MovableController(_path, winLose);
             var wave = new WaveController(_settings, _fabric, _token.Token);
+            var place = new ObjectPlacer.ObjectPlacer(_placeForTower.GetBounds());
             
             
             wave.RegisterListener(router);
