@@ -15,9 +15,9 @@ namespace _Project.Scripts.Unity
         public IUnit CreateUnit(int type)
         {
             // Take from pool
-            var list = _cache[type];
-            if (list != null)
+            if (_cache.ContainsKey(type) == true)
             {
+                var list = _cache[type];
                 if (list.Count > 0)
                 {
                     var o = list[0];
@@ -35,13 +35,11 @@ namespace _Project.Scripts.Unity
 
         public void DestroyUnit(int type, IUnit obj)
         {
-            var list = _cache[type];
-            if (list == null)
+            if (_cache.ContainsKey(type) == false)
             {
-                list = new List<UnitView>();
-                _cache[type] = list;
+                _cache.Add(type, new List<UnitView>());
             }
-            
+            var list = _cache[type];
             list.Add((UnitView) obj);
         }
     }
