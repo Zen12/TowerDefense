@@ -1,6 +1,7 @@
 using System;
 using _Project.Scripts.ObjectPlacer;
 using _Project.Scripts.Tower;
+using _Project.Scripts.Unity.Effects;
 using UnityEngine;
 
 namespace _Project.Scripts.Unity
@@ -15,6 +16,8 @@ namespace _Project.Scripts.Unity
         private static readonly int ColorId = Shader.PropertyToID("_Color");
         private static Collider[] _colliders = new Collider[30];
         private BaseTower _tower;
+
+        private UnityEffects _effects;
 
 
         public Vector3 Position
@@ -56,8 +59,9 @@ namespace _Project.Scripts.Unity
         }
         
 
-        public void Init(BaseTower tower)
+        public void Init(BaseTower tower, UnityEffects effects)
         {
+            _effects = effects;
             _tower = tower;
             _trigger.radius = _tower.CurrentAttackDistance;
 
@@ -112,9 +116,29 @@ namespace _Project.Scripts.Unity
             var unityView = (UnitView)unit;
             if (unityView != null)
             {
-                unityView.UpdateView();
+                _effects.ProjectileAttack(_tr.position, unityView.transform, () =>
+                {
+                    unityView.UpdateView();
+                });
             }
         }
+
+        public void OnAttackUnits(Vector3 pos, IDamageable[] units)
+        {
+            _effects.ProjectileAoeAttack(_tr.position, pos, () =>
+            {
+                foreach (var unit in units)
+                {
+                    // because it's engine specific, we can cast
+                    var unityView = (UnitView)unit;
+                    if (unityView != null)
+                    {
+                        unityView.UpdateView();
+                    }
+                }
+            });
+        }
+        
 
         public void OnSlowUnit(IDamageable unit)
         {
@@ -122,8 +146,28 @@ namespace _Project.Scripts.Unity
             var unityView = (UnitView)unit;
             if (unityView != null)
             {
-                unityView.UpdateView();
+                _effects.ProjectileSlow(_tr.position, unityView.transform, () =>
+                {
+                    unityView.UpdateView();
+                });
             }
         }
+
+        public void OnSlowUnits(Vector3 pos, IDamageable[] units)
+        {
+            _effects.ProjectileAoeSlow(_tr.position, pos, () =>
+            {
+                foreach (var unit in units)
+                {
+                    // because it's engine specific, we can cast
+                    var unityView = (UnitView)unit;
+                    if (unityView != null)
+                    {
+                        unityView.UpdateView();
+                    }
+                }
+            });
+        }
+
     }
 }

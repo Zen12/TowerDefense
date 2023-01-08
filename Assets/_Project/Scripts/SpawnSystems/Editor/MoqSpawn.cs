@@ -30,6 +30,7 @@ namespace _Project.Scripts.SpawnSystems.Editor
     internal class DummyUnit : IUnit
     {
         public bool IsAlive { get; set; } = false;
+        public bool IsOnPath { get; set; }
     }
 
     internal class DummyUnitListener : IWaveUnitListener

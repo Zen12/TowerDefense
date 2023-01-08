@@ -58,7 +58,9 @@ namespace _Project.Scripts.Tower
         void OnLookAt(Vector3 pos);
 
         void OnAttackUnit(IDamageable unit);
+        void OnAttackUnits(Vector3 pos, IDamageable[] unit);
         void OnSlowUnit(IDamageable unit);
+        void OnSlowUnits(Vector3 pos, IDamageable[] unit);
     }
 
     [System.Serializable]

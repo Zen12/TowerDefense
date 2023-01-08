@@ -132,7 +132,7 @@ namespace _Project.Scripts.SpawnSystems
                 return false;
             foreach (var unit in _list)
             {
-                if (unit.IsAlive)
+                if (unit.IsOnPath)
                     return true;
             }
 
@@ -161,6 +161,8 @@ namespace _Project.Scripts.SpawnSystems
     public interface IUnit
     {
         bool IsAlive { get; }
+        
+        bool IsOnPath { get; }
     }
 
 }

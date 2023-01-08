@@ -230,6 +230,7 @@ namespace _Project.Scripts.Tower.Editor
         public Vector3 LookAtPos;
         public IDamageable OnAttack;
         public IDamageable OnSlow;
+        
         public void OnLookAt(Vector3 pos)
         {
             LookAtPos = pos;
@@ -240,15 +241,25 @@ namespace _Project.Scripts.Tower.Editor
             OnAttack = unit;
         }
 
+        public void OnAttackUnits(Vector3 pos, IDamageable[] unit)
+        {
+            
+        }
+
         public void OnSlowUnit(IDamageable unit)
         {
             OnSlow = unit;
+        }
+
+        public void OnSlowUnits(Vector3 pos, IDamageable[] unit)
+        {
         }
     }
 
     internal class DummyDamageable : IDamageable
     {
         public bool IsAlive { get; set; } = true;
+        public bool IsOnPath { get; set; }
 
         public float LastDamageAmount;
         public float LastSlowTime;

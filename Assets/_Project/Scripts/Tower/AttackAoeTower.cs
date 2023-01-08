@@ -10,10 +10,10 @@ namespace _Project.Scripts.Tower
 
         protected override void OnPerformOnUnits(List<IDamageable> list)
         {
+            _view.OnAttackUnits(list[0].Position, list.ToArray());
             foreach (var damageable in list)
             {
                 damageable.TakeDamage(_stats.Damage);
-                _view.OnAttackUnit(damageable);
             }
         }
     }

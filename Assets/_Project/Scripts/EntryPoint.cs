@@ -6,6 +6,7 @@ using _Project.Scripts.Gameplay;
 using _Project.Scripts.Movables;
 using _Project.Scripts.SpawnSystems;
 using _Project.Scripts.Unity;
+using _Project.Scripts.Unity.Effects;
 using _Project.Scripts.Unity.UI;
 using UnityEngine;
 
@@ -21,6 +22,7 @@ namespace _Project.Scripts
         [SerializeField] private Camera _camera;
         [SerializeField] private LayerMask _placeMask;
         [SerializeField] private TowerPlacerUI _towerPlacerUI;
+        [SerializeField] private UnityEffects _effects;
 
         private CancellationTokenSource _token;
 
@@ -36,7 +38,7 @@ namespace _Project.Scripts
             var unitFabric = new UnitFabric(_unitConfig);
             var wave = new WaveController(_waveConfig.WaveSettings, unitFabric, _token.Token);
             var place = new ObjectPlacer.ObjectBoundsPlacer(_placeForTower.GetBounds());
-            var unityPlacer = new TowerPlacerUnityController(place, _camera, _placeMask);
+            var unityPlacer = new TowerPlacerUnityController(place, _camera, _placeMask, _effects);
             
             wave.RegisterListener(router);
             wave.RegisterListener(winLose);

@@ -2,6 +2,7 @@ using System;
 using _Project.Scripts.Database;
 using _Project.Scripts.ObjectPlacer;
 using _Project.Scripts.Tower;
+using _Project.Scripts.Unity.Effects;
 using _Project.Scripts.Unity.UI;
 using UnityEngine;
 
@@ -11,14 +12,16 @@ namespace _Project.Scripts.Unity
     {
         private readonly Camera _camera;
         private readonly ObjectBoundsPlacer _placer;
+        private readonly UnityEffects _effects;
         private bool _isSelected;
         private readonly LayerMask _mask;
         private TowerView _view;
         private TowerItem _item;
 
-        public TowerPlacerUnityController(ObjectBoundsPlacer boundsPlacer, Camera camera, LayerMask mask)
+        public TowerPlacerUnityController(ObjectBoundsPlacer boundsPlacer, Camera camera, LayerMask mask, UnityEffects effects)
         {
             _mask = mask;
+            _effects = effects;
             _placer = boundsPlacer;
             _camera = camera;
         }
@@ -63,13 +66,13 @@ namespace _Project.Scripts.Unity
                 switch (_item.Type)
                 {
                     case TowerType.Pierce:
-                        _view.Init(new AttackOneUnitTower(_item.Stats, _view));
+                        _view.Init(new AttackOneUnitTower(_item.Stats, _view), _effects);
                         break;
                     case TowerType.AoeDamage:
-                        _view.Init(new AttackAoeTower(_item.Stats, _view));
+                        _view.Init(new AttackAoeTower(_item.Stats, _view), _effects);
                         break;
                     case TowerType.AoeSlow:
-                        _view.Init(new SlowAoeTower(_item.Stats, _view));
+                        _view.Init(new SlowAoeTower(_item.Stats, _view), _effects);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();

@@ -10,7 +10,8 @@ namespace _Project.Scripts.Unity
     public class UnitView : MonoBehaviour, IMovable, IDamageable
     {
         [SerializeField] private float _hp = 10;
-        public bool IsAlive => _hp > 0f;
+        public bool IsAlive => _hp > 0;
+        public bool IsOnPath { get; private set; } = true;
         private Transform _tr;
 
         private Coroutine _lastSlowRoutine;
@@ -58,6 +59,7 @@ namespace _Project.Scripts.Unity
 
         public void UpdateView()
         {
+            IsOnPath = IsAlive;
             gameObject.SetActive(IsAlive);
         }
 
