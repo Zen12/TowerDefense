@@ -17,10 +17,11 @@
     - [x] AOE-Damage
     - [x] AOE-Slow
 - [ ] UI/Others
-  - [ ] UI/Lose/Restart
+  - [x] UI/Lose/Restart
   - [x] Tutorial to place one tower
-  - [ ] Build for WebGL
   - [x] Range visual 
+  - [ ] Build for WebGL
+  - [ ] Polish UI
 
 
 ### Third Party
