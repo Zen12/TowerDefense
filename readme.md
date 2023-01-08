@@ -24,6 +24,7 @@
   - [ ] AppState
   - [x] Tutorial to place one tower
   - [ ] Build for WebGL
+  - [ ] Range visual 
 
 
 ### Third Party
