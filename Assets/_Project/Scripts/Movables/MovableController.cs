@@ -17,7 +17,7 @@ namespace _Project.Scripts.Movables
         public void Register(IMoveControllerListener listener) => _listeners.Add(listener);
         public void Remove(IMoveControllerListener listener) => _listeners.Remove(listener);
 
-        public void RegisterMovable(IMovable movable, float speed)
+        public void RegisterMovable(IMovable movable)
         {
             movable.Position = _path.GetPositionFromTime(0);
             _list.Add(new MovableData

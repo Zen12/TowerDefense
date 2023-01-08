@@ -19,7 +19,7 @@ namespace _Project.Scripts.Gameplay
             var move = (IMovable)unit;
             if (move != null)
             {
-                _movable.RegisterMovable(move, 0.1f);
+                _movable.RegisterMovable(move);
             }
         }
     }

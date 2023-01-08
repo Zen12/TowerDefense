@@ -12,7 +12,7 @@ namespace _Project.Scripts.Movables.Editor
             var controller = new MovableController(new DummyPath());
             controller.Register(listener);
             var movable = new DummyMovable();
-            controller.RegisterMovable(movable, 1f);
+            controller.RegisterMovable(movable);
             
             // Act
             controller.Update(1.1f);
@@ -28,7 +28,7 @@ namespace _Project.Scripts.Movables.Editor
             var path = new DummyPath();
             var controller = new MovableController(path);
             var movable = new DummyMovable();
-            controller.RegisterMovable(movable, 1f);
+            controller.RegisterMovable(movable);
             
             // Act
             controller.Update(1.1f);
@@ -44,7 +44,7 @@ namespace _Project.Scripts.Movables.Editor
             var path = new DummyPath();
             var controller = new MovableController(path);
             var movable = new DummyMovable();
-            controller.RegisterMovable(movable, 1f);
+            controller.RegisterMovable(movable);
             
             // Act
             controller.Update(1.1f);
@@ -60,7 +60,7 @@ namespace _Project.Scripts.Movables.Editor
             var path = new DummyPath();
             var controller = new MovableController(path);
             var movable = new DummyMovable();
-            controller.RegisterMovable(movable, 0.5f);
+            controller.RegisterMovable(movable);
             
             // Act
             controller.Update(0.5f);
@@ -78,7 +78,7 @@ namespace _Project.Scripts.Movables.Editor
             var controller = new MovableController(path);
             controller.Register(listener);
             var movable = new DummyMovable();
-            controller.RegisterMovable(movable, 1f);
+            controller.RegisterMovable(movable);
             
             // Act
             controller.Update(0.5f);
@@ -95,11 +95,18 @@ namespace _Project.Scripts.Movables.Editor
             var path = new DummyPath();
             var controller = new MovableController(path);
             controller.Register(listener);
-            controller.RegisterMovable(new DummyMovable(), 0.1f);
-            controller.RegisterMovable(new DummyMovable(), 0.1f);
-            controller.RegisterMovable(new DummyMovable(), 1f);
+            controller.RegisterMovable(new DummyMovable
+            {
+                Speed = 0.01f
+            });
+            controller.RegisterMovable(new DummyMovable
+            {
+                Speed = 0.01f
+            });
+            controller.RegisterMovable(new DummyMovable());
             
             // Act
+            controller.Update(0.4f);
             controller.Update(0.4f);
             controller.Update(0.4f);
             
@@ -117,7 +124,7 @@ namespace _Project.Scripts.Movables.Editor
             controller.Register(listener);
             var movable = new DummyMovable();
             movable.SlowDownFactor = 0.5f;
-            controller.RegisterMovable(movable, 1f);
+            controller.RegisterMovable(movable);
             
             // Act
             controller.Update(0.1f);
