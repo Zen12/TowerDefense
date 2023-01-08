@@ -9,7 +9,7 @@ namespace _Project.Scripts.Unity
 {
     public class UnitView : MonoBehaviour, IMovable, IDamageable
     {
-        [SerializeField] private float _hp = 10;
+        private float _hp = 10;
         public bool IsAlive => _hp > 0;
         public bool IsOnPath { get; private set; } = true;
         private Transform _tr;
@@ -18,6 +18,11 @@ namespace _Project.Scripts.Unity
 
 
         public float SlowDownFactor { get; private set; } = 1;
+
+        public void SetHp(float hp)
+        {
+            _hp = hp;
+        }
 
         public void TakeDamage(in float amount)
         {

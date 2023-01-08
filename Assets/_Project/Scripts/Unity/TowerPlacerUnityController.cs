@@ -33,6 +33,7 @@ namespace _Project.Scripts.Unity
             _item = item;
             _isSelected = true;
             _view = GameObject.Instantiate(item.Tower);
+            _effects.OnAddTower(_view.Position, _item.Stats.DamageDistance);
         }
 
         public void Update(in float deltaTime)
@@ -54,6 +55,7 @@ namespace _Project.Scripts.Unity
 
         private void ResetView()
         {
+            _effects.RemoveLast();
             GameObject.Destroy(_view.gameObject);
             _view = null;
             _item = null;
@@ -66,6 +68,7 @@ namespace _Project.Scripts.Unity
             {
                 AmountOfTowerPlaced++;
                 _view.SetPlace();
+                _effects.UpdateLastTower(_view.Position, _item.Stats.DamageDistance);
                 switch (_item.Type)
                 {
                     case TowerType.Pierce:
@@ -92,6 +95,7 @@ namespace _Project.Scripts.Unity
             if (Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out var raycastHi, float.MaxValue, _mask))
             {
                 _view.transform.position = raycastHi.point;
+                _effects.UpdateLastTower(raycastHi.point, _item.Stats.DamageDistance);
                 if (_placer.IsAbleToPlace(raycastHi.point))
                 {
                     _view.SetPossibleToPlace();

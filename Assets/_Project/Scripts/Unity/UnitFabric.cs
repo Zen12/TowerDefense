@@ -19,6 +19,7 @@ namespace _Project.Scripts.Unity
 
         public IUnit CreateUnit(int type)
         {
+            var item = _config.Items[type];
             // Take from pool
             if (_cache.ContainsKey(type) == true)
             {
@@ -26,6 +27,7 @@ namespace _Project.Scripts.Unity
                 if (list.Count > 0)
                 {
                     var o = list[0];
+                    o.SetHp(item.Hp);
                     o.gameObject.SetActive(true);
                     list.RemoveAt(0);
                     return o;
@@ -33,8 +35,9 @@ namespace _Project.Scripts.Unity
             }
             
             // Create NewONe
-            var p = _config.Prefabs[type];
+            var p = item.Prefab;
             var obj = GameObject.Instantiate(p);
+            obj.SetHp(item.Hp);
             return obj;
         }
 

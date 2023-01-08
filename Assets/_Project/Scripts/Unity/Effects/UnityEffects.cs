@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,11 +7,53 @@ namespace _Project.Scripts.Unity.Effects
 {
     public class UnityEffects : MonoBehaviour
     {
-        private float _trajectorySpeed = 10f;
+        [SerializeField] private float _trajectorySpeed = 10f;
         [SerializeField] private GameObject _prefab;
+        [SerializeField] private Material[] _rangeMaterials;
         [SerializeField] private ParticleSystem _aoeAttack;
         [SerializeField] private ParticleSystem _aoeSlow;
         private readonly List<Transform> _list = new List<Transform>();
+
+        private readonly Vector4[] _towerPos = new Vector4[100];
+        private readonly float[] _towerRange = new float[100];
+        private int _towerIndex = -1;
+        private static readonly int TowerPoses = Shader.PropertyToID("_TowerPoses");
+        private static readonly int TowerRanges = Shader.PropertyToID("_TowerRanges");
+        private static readonly int TowerAmount = Shader.PropertyToID("_TowerAmount");
+
+        private void Awake()
+        {
+            UpdateRangeMaterials();
+        }
+
+        public void OnAddTower(Vector3 pos, float range)
+        {
+            _towerIndex++;
+            UpdateLastTower(pos, range);
+        }
+
+        public void RemoveLast()
+        {
+            _towerIndex--;
+            UpdateRangeMaterials();
+        }
+
+        public void UpdateLastTower(Vector3 pos, float range)
+        {
+            _towerPos[_towerIndex] = pos;
+            _towerRange[_towerIndex] = range;
+            UpdateRangeMaterials();
+        }
+
+        private void UpdateRangeMaterials()
+        {
+            foreach (var material in _rangeMaterials)
+            {
+                material.SetVectorArray(TowerPoses, _towerPos);
+                material.SetFloatArray(TowerRanges, _towerRange);
+                material.SetInt(TowerAmount, _towerIndex + 1);
+            }
+        }
 
         public void ProjectileAttack(Vector3 startPos, Transform target, System.Action onFinish)
         {
