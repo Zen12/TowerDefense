@@ -4014,7 +4014,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1228222717}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.7413199, y: -2.28, z: -1.7621689}
+  m_LocalPosition: {x: 2.2102401, y: -2.28, z: -1.7621691}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 425086571}
@@ -4032,11 +4032,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9cf9c5931a3b3c4ba456c8213d7ebfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_position: {x: 3.7393198, y: -2.0841384, z: 4.9578314}
+  m_position: {x: 4.20824, y: -2.0841384, z: 4.9578314}
   m_precedingControlPointLocalPosition: {x: -0.317441, y: 0, z: -0.008217812}
-  m_precedingControlPointPosition: {x: 3.4218788, y: -2.0841384, z: 4.9496136}
+  m_precedingControlPointPosition: {x: 3.890799, y: -2.0841384, z: 4.9496136}
   m_followingControlPointLocalPosition: {x: 0.317441, y: 0, z: 0.008217812}
-  m_followingControlPointPosition: {x: 4.056761, y: -2.0841384, z: 4.966049}
+  m_followingControlPointPosition: {x: 4.525681, y: -2.0841384, z: 4.966049}
   m_handleMode: 2
   m_normal: {x: 0, y: 1, z: 0}
   m_autoCalculatedNormalAngleOffset: 0
