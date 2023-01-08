@@ -1,5 +1,6 @@
 ### Description
 Playable WebGL build: https://andreigusan.itch.io/towerdefense
+Project scripts are in Assets/_Project/Scripts
 
 ### Roadmap
 - [x] Project and assets:
