@@ -6,8 +6,13 @@ namespace _Project.Scripts.Movables.Editor
 
     internal class DummyMovable : IMovable
     {
+        public bool IsFinish;
         public Vector3 Position { get; set; }
         public Quaternion Rotation { get; set; }
+        public void OnFinishPath()
+        {
+            IsFinish = true;
+        }
     }
 
     internal class DummyPath : IPath

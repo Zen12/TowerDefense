@@ -32,7 +32,7 @@ namespace _Project.Scripts
             _token = new CancellationTokenSource();
             var router = new RouterWaveToMovable();
             var winLose = new WinLoseChecker(_waveConfig.TotalLives);
-            var move = new MovableController(_path, winLose);
+            var move = new MovableController(_path);
             var unitFabric = new UnitFabric(_unitConfig);
             var wave = new WaveController(_waveConfig.WaveSettings, unitFabric, _token.Token);
             var place = new ObjectPlacer.ObjectBoundsPlacer(_placeForTower.GetBounds());
@@ -40,6 +40,9 @@ namespace _Project.Scripts
             
             wave.RegisterListener(router);
             wave.RegisterListener(winLose);
+            
+            move.Register(winLose);
+
             
             _towerPlacerUI.Register(unityPlacer);
 

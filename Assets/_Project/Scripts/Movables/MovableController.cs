@@ -7,13 +7,15 @@ namespace _Project.Scripts.Movables
     {
         private readonly IPath _path;
         private readonly List<MovableData> _list = new List<MovableData>();
-        private readonly IMoveControllerListener _listener;
+        private readonly List<IMoveControllerListener> _listeners = new List<IMoveControllerListener>();
 
-        public MovableController(IPath path, IMoveControllerListener listener)
+        public MovableController(IPath path)
         {
             _path = path;
-            _listener = listener;
         }
+
+        public void Register(IMoveControllerListener listener) => _listeners.Add(listener);
+        public void Remove(IMoveControllerListener listener) => _listeners.Remove(listener);
 
         public void RegisterMovable(IMovable movable, float speed)
         {
@@ -26,6 +28,11 @@ namespace _Project.Scripts.Movables
             });
         }
 
+        public void RemoveMovable(IMovable movable)
+        {
+            _list.RemoveAll(_ => _.Target == movable);
+        }
+
         public void Update(in float deltaTime)
         {
             foreach (var data in _list)
@@ -35,7 +42,11 @@ namespace _Project.Scripts.Movables
                 {
                     data.Target.Position = _path.GetPositionFromTime(1f);
                     data.NeedToRemove = true;
-                    _listener.OnFinishMovable(data.Target);
+                    foreach (var listener in _listeners)
+                    {
+                        listener.OnFinishMovable(data.Target);
+                    }
+                    data.Target.OnFinishPath();
                     continue;
                 }
 
@@ -73,5 +84,7 @@ namespace _Project.Scripts.Movables
     {
         Vector3 Position { get; set; }
         Quaternion Rotation { get; set; }
+
+        void OnFinishPath();
     }
 }

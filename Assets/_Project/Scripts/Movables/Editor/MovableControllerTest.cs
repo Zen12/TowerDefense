@@ -9,7 +9,8 @@ namespace _Project.Scripts.Movables.Editor
         {
             // Given
             var listener = new DummyListener();
-            var controller = new MovableController(new DummyPath(), listener);
+            var controller = new MovableController(new DummyPath());
+            controller.Register(listener);
             var movable = new DummyMovable();
             controller.RegisterMovable(movable, 1f);
             
@@ -24,9 +25,8 @@ namespace _Project.Scripts.Movables.Editor
         public void GIVEN_1_MOVABLE__MOVE_TILL_END__SHOULD_POSITION_BE_LAST_PATH()
         {
             // Given
-            var listener = new DummyListener();
             var path = new DummyPath();
-            var controller = new MovableController(path, listener);
+            var controller = new MovableController(path);
             var movable = new DummyMovable();
             controller.RegisterMovable(movable, 1f);
             
@@ -38,12 +38,27 @@ namespace _Project.Scripts.Movables.Editor
         }
         
         [Test]
+        public void GIVEN_1_MOVABLE__MOVE_TILL_END__SHOULD_BE_FINISHED()
+        {
+            // Given
+            var path = new DummyPath();
+            var controller = new MovableController(path);
+            var movable = new DummyMovable();
+            controller.RegisterMovable(movable, 1f);
+            
+            // Act
+            controller.Update(1.1f);
+            
+            // Should
+            Assert.IsTrue(movable.IsFinish);
+        }
+        
+        [Test]
         public void GIVEN_1_MOVABLE__MOVE_TILL_HALF__SHOULD_HALF_TILL_END()
         {
             // Given
-            var listener = new DummyListener();
             var path = new DummyPath();
-            var controller = new MovableController(path, listener);
+            var controller = new MovableController(path);
             var movable = new DummyMovable();
             controller.RegisterMovable(movable, 0.5f);
             
@@ -60,7 +75,8 @@ namespace _Project.Scripts.Movables.Editor
             // Given
             var listener = new DummyListener();
             var path = new DummyPath();
-            var controller = new MovableController(path, listener);
+            var controller = new MovableController(path);
+            controller.Register(listener);
             var movable = new DummyMovable();
             controller.RegisterMovable(movable, 1f);
             
@@ -77,7 +93,8 @@ namespace _Project.Scripts.Movables.Editor
             // Given
             var listener = new DummyListener();
             var path = new DummyPath();
-            var controller = new MovableController(path, listener);
+            var controller = new MovableController(path);
+            controller.Register(listener);
             controller.RegisterMovable(new DummyMovable(), 0.1f);
             controller.RegisterMovable(new DummyMovable(), 0.1f);
             controller.RegisterMovable(new DummyMovable(), 1f);

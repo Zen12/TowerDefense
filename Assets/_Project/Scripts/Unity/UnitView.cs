@@ -10,6 +10,8 @@ namespace _Project.Scripts.Unity
     {
         [SerializeField] private float _hp = 10;
         public bool IsAlive => _hp > 0f;
+        private Transform _tr;
+
 
         public void TakeDamage(in float amount)
         {
@@ -32,7 +34,12 @@ namespace _Project.Scripts.Unity
             set => _tr.rotation = value;
         }
 
-        private Transform _tr;
+        public void OnFinishPath()
+        {
+            _hp = 0;
+            gameObject.SetActive(false);
+        }
+
 
         private void Awake()
         {
