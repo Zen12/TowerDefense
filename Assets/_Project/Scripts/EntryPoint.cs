@@ -22,9 +22,12 @@ namespace _Project.Scripts
         [SerializeField] private Camera _camera;
         [SerializeField] private LayerMask _placeMask;
         [SerializeField] private TowerPlacerUI _towerPlacerUI;
+        [SerializeField] private TutorialUI _tutorial;
         [SerializeField] private UnityEffects _effects;
 
         private CancellationTokenSource _token;
+
+        private TowerPlacerUnityController _placer;
 
 
         private readonly List<IUpdatable> _updatables = new List<IUpdatable>();
@@ -38,7 +41,7 @@ namespace _Project.Scripts
             var unitFabric = new UnitFabric(_unitConfig);
             var wave = new WaveController(_waveConfig.WaveSettings, unitFabric, _token.Token);
             var place = new ObjectPlacer.ObjectBoundsPlacer(_placeForTower.GetBounds());
-            var unityPlacer = new TowerPlacerUnityController(place, _camera, _placeMask, _effects);
+            _placer = new TowerPlacerUnityController(place, _camera, _placeMask, _effects);
             
             wave.RegisterListener(router);
             wave.RegisterListener(winLose);
@@ -46,18 +49,26 @@ namespace _Project.Scripts
             move.Register(winLose);
 
             
-            _towerPlacerUI.Register(unityPlacer);
+            _towerPlacerUI.Register(_placer);
 
             router.Init(move);
             
             
             _updatables.Add(wave);
             _updatables.Add(move);
-            _updatables.Add(unityPlacer);
+            _updatables.Add(_placer);
         }
 
         private void Update()
         {
+            if (_placer.AmountOfTowerPlaced == 0)
+            {
+                _placer.Update(Time.deltaTime);
+                //wait for tutorial to finish
+                return;
+            }
+            
+            _tutorial.Finish();
             var deltaTime = Time.deltaTime;
             foreach (var updatable in _updatables)
             {

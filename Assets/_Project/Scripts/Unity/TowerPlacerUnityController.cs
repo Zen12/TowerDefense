@@ -18,6 +18,8 @@ namespace _Project.Scripts.Unity
         private TowerView _view;
         private TowerItem _item;
 
+        public int AmountOfTowerPlaced { get; private set; } = 0;
+
         public TowerPlacerUnityController(ObjectBoundsPlacer boundsPlacer, Camera camera, LayerMask mask, UnityEffects effects)
         {
             _mask = mask;
@@ -62,6 +64,7 @@ namespace _Project.Scripts.Unity
             _isSelected = false;
             if (_placer.Place(_view))
             {
+                AmountOfTowerPlaced++;
                 _view.SetPlace();
                 switch (_item.Type)
                 {

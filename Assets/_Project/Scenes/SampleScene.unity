@@ -2882,6 +2882,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _towerPlacerUI: {fileID: 1456747766}
+  _tutorial: {fileID: 7389322554787417647}
   _effects: {fileID: 105739131}
 --- !u!1 &902982869
 GameObject:
@@ -18890,3 +18891,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8715639fe81b4ac29d50db9dde85f3e, type: 3}
+--- !u!114 &7389322554787417647 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2795186675775202600, guid: e8715639fe81b4ac29d50db9dde85f3e, type: 3}
+  m_PrefabInstance: {fileID: 7389322554787417646}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3a5f64f4b9964d7a984d97d24da5e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
