@@ -84,7 +84,12 @@ namespace _Project.Scripts.SpawnSystems
 
             for (int i = 0; i < wave.Amount; i++)
             {
-                await Task.Delay(TimeSpan.FromSeconds(wave.Delay), _token);
+                var nextDate = DateTime.Now.Add(TimeSpan.FromSeconds(wave.Delay));
+                while (DateTime.Now < nextDate)
+                {
+                    await Task.Yield();
+                }
+                
                 if (_token.IsCancellationRequested)
                     break;
                 var obj = _fabric.CreateUnit(wave.Type);
