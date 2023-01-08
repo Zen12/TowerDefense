@@ -67,6 +67,8 @@ namespace _Project.Scripts.SpawnSystems
 
         private async Task SpawnAsync()
         {
+            if (_token.IsCancellationRequested)
+                return;
             CurrentWave++;
             if (CurrentWave >= _settings.Waves.Count)
             {

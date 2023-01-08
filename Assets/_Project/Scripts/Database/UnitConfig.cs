@@ -14,5 +14,6 @@ namespace _Project.Scripts.Database
     {
         public UnitView Prefab;
         public float Hp;
+        public float Speed = 10;
     }
 }

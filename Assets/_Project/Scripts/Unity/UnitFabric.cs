@@ -28,6 +28,7 @@ namespace _Project.Scripts.Unity
                 {
                     var o = list[0];
                     o.SetHp(item.Hp);
+                    o.SetSpeed(item.Speed);
                     o.gameObject.SetActive(true);
                     list.RemoveAt(0);
                     return o;
@@ -38,6 +39,7 @@ namespace _Project.Scripts.Unity
             var p = item.Prefab;
             var obj = GameObject.Instantiate(p);
             obj.SetHp(item.Hp);
+            obj.SetSpeed(item.Speed);
             return obj;
         }
 

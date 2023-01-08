@@ -18,10 +18,17 @@ namespace _Project.Scripts.Unity
 
 
         public float SlowDownFactor { get; private set; } = 1;
+        public float Speed { get; private set; }
 
         public void SetHp(float hp)
         {
             _hp = hp;
+            IsOnPath = IsAlive;
+        }
+        
+        public void SetSpeed(float speed)
+        {
+            Speed = speed;
         }
 
         public void TakeDamage(in float amount)

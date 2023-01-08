@@ -15,7 +15,10 @@ MonoBehaviour:
   Items:
   - Prefab: {fileID: 8963937495688849840, guid: 8221732cdc6c2402f8fe3e105758448e, type: 3}
     Hp: 10
+    Speed: 3
   - Prefab: {fileID: 2431633368821500118, guid: 99b4236b0e3bf44f4a7cccaaa974fcde, type: 3}
     Hp: 20
+    Speed: 3
   - Prefab: {fileID: -8366547598422044413, guid: 23427c50d048b4a6fba410abf3390fee, type: 3}
     Hp: 30
+    Speed: 3

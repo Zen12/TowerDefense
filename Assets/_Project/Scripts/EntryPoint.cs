@@ -12,7 +12,7 @@ using UnityEngine;
 
 namespace _Project.Scripts
 {
-    public class EntryPoint : MonoBehaviour
+    public class EntryPoint : MonoBehaviour, IWinLoseListener
     {
         [SerializeField] private WaveConfig _waveConfig;
         [SerializeField] private UnitConfig _unitConfig;
@@ -23,6 +23,7 @@ namespace _Project.Scripts
         [SerializeField] private LayerMask _placeMask;
         [SerializeField] private TowerPlacerUI _towerPlacerUI;
         [SerializeField] private TutorialUI _tutorial;
+        [SerializeField] private HudUI _hud;
         [SerializeField] private UnityEffects _effects;
 
         private CancellationTokenSource _token;
@@ -31,6 +32,8 @@ namespace _Project.Scripts
 
 
         private readonly List<IUpdatable> _updatables = new List<IUpdatable>();
+
+        private bool _update = true;
 
         private void Awake()
         {
@@ -47,6 +50,11 @@ namespace _Project.Scripts
             wave.RegisterListener(winLose);
             
             move.Register(winLose);
+            
+            winLose.RegisterListener(_hud);
+            winLose.RegisterListener(this);
+            
+            _hud.OnUpdateLives(winLose.TotalLives);
 
             
             _towerPlacerUI.Register(_placer);
@@ -61,6 +69,9 @@ namespace _Project.Scripts
 
         private void Update()
         {
+            if (_update == false)
+                return;
+            
             if (_placer.AmountOfTowerPlaced == 0)
             {
                 _placer.Update(Time.deltaTime);
@@ -79,6 +90,22 @@ namespace _Project.Scripts
         private void OnDestroy()
         {
             _token.Cancel();
+        }
+
+        public void OnWin()
+        {
+            _update = false;
+            _token.Cancel();
+        }
+
+        public void OnLose()
+        {
+            _update = false;
+            _token.Cancel();
+        }
+
+        public void OnUpdateLives(in int lives)
+        {
         }
     }
 

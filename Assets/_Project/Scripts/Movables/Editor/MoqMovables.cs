@@ -7,7 +7,9 @@ namespace _Project.Scripts.Movables.Editor
     internal class DummyMovable : IMovable
     {
         public bool IsFinish;
+        public bool IsOnPath { get; set; }
         public float SlowDownFactor { get; set; } = 1;
+        public float Speed { get; } = 1;
         public Vector3 Position { get; set; }
         public Quaternion Rotation { get; set; }
         public void OnFinishPath()

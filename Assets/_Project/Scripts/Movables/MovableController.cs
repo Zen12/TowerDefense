@@ -22,7 +22,6 @@ namespace _Project.Scripts.Movables
             movable.Position = _path.GetPositionFromTime(0);
             _list.Add(new MovableData
             {
-                Speed = speed,
                 Target = movable,
                 NeedToRemove = false
             });
@@ -35,6 +34,8 @@ namespace _Project.Scripts.Movables
 
         public void Update(in float deltaTime)
         {
+            _list.RemoveAll(_ => _.NeedToRemove || _.Target.IsOnPath == false);
+
             foreach (var data in _list)
             {
                 var time = _path.GetTime(data.Target.Position);
@@ -54,11 +55,9 @@ namespace _Project.Scripts.Movables
                 var nextPos = _path.GetPositionFromTime(nexTime);
                 var dir = (nextPos - data.Target.Position).normalized;
                 data.Target.Position +=
-                    Vector3.Lerp(Vector3.zero, dir * data.Speed, data.Target.SlowDownFactor);
+                    Vector3.Lerp(Vector3.zero, dir * (data.Target.Speed * deltaTime), data.Target.SlowDownFactor);
                 data.Target.Rotation = Quaternion.LookRotation(dir);
             }
-
-            _list.RemoveAll(_ => _.NeedToRemove);
         }
     }
     
@@ -66,7 +65,6 @@ namespace _Project.Scripts.Movables
     internal sealed class MovableData
     {
         public IMovable Target;
-        public float Speed;
         public bool NeedToRemove;
     }
 
@@ -83,7 +81,11 @@ namespace _Project.Scripts.Movables
 
     public interface IMovable
     {
+        bool IsOnPath { get; }
+
         public float SlowDownFactor { get; }
+        
+        public float Speed { get; }
 
         Vector3 Position { get; set; }
         Quaternion Rotation { get; set; }
