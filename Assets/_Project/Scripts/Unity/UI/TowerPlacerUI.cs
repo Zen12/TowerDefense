@@ -14,6 +14,7 @@ namespace _Project.Scripts.Unity.UI
 
         private void Awake()
         {
+            _root.gameObject.SetActive(true);
             foreach (var item in _config.Items)
             {
                 var obj = Instantiate(_prefab, _root);
