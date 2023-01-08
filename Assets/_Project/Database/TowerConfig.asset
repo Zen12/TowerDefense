@@ -18,7 +18,7 @@ MonoBehaviour:
       SlowTime: 0
       DelayExecution: 1
       AoeRange: 0
-      DamageDistance: 4
+      DamageDistance: 1.4
     Type: 0
     Tower: {fileID: -4192838574169490643, guid: 825921f33e01e4b4b86ce3fd6b876f0a, type: 3}
     Preview: {fileID: 21300000, guid: 080c2db666c6440ab9130cabe39ceb63, type: 3}
@@ -27,7 +27,7 @@ MonoBehaviour:
       SlowTime: 0
       DelayExecution: 7
       AoeRange: 3
-      DamageDistance: 4
+      DamageDistance: 1.4
     Type: 1
     Tower: {fileID: 4160399096032104462, guid: 266df5e1dc381432184929104dfd7390, type: 3}
     Preview: {fileID: 21300000, guid: 6fe1e82baa8794bc787a2b544a9464e2, type: 3}
@@ -36,7 +36,7 @@ MonoBehaviour:
       SlowTime: 4
       DelayExecution: 3
       AoeRange: 3
-      DamageDistance: 5
+      DamageDistance: 1.4
     Type: 2
     Tower: {fileID: 9150854038605947420, guid: 81ea28c1496eb4f188c25a5f30f334fa, type: 3}
     Preview: {fileID: 21300000, guid: 6e3d6f173d50d47a4b8af7f3d02cce85, type: 3}
