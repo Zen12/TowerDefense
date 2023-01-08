@@ -24,3 +24,9 @@ MonoBehaviour:
     - Delay: 1
       Type: 2
       Amount: 5
+    - Delay: 0.7
+      Type: 1
+      Amount: 6
+    - Delay: 0.5
+      Type: 2
+      Amount: 200
