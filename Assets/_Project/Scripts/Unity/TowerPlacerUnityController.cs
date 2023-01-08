@@ -63,13 +63,13 @@ namespace _Project.Scripts.Unity
                 switch (_item.Type)
                 {
                     case TowerType.Pierce:
-                        _view.Init(new AttackOneUnitTower(_item.Stats));
+                        _view.Init(new AttackOneUnitTower(_item.Stats, _view));
                         break;
                     case TowerType.AoeDamage:
-                        _view.Init(new AttackAoeTower(_item.Stats));
+                        _view.Init(new AttackAoeTower(_item.Stats, _view));
                         break;
                     case TowerType.AoeSlow:
-                        _view.Init(new SlowAoeTower(_item.Stats));
+                        _view.Init(new SlowAoeTower(_item.Stats, _view));
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();

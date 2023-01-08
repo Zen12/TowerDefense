@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace _Project.Scripts.Unity
 {
-    public sealed class TowerView : MonoBehaviour, IPlaceable
+    public sealed class TowerView : MonoBehaviour, IPlaceable, ITowerView
     {
         [SerializeField] private Renderer _renderer;
         [SerializeField] private Color _startColor;
@@ -98,6 +98,12 @@ namespace _Project.Scripts.Unity
         {
             if (_tower != null)
                 _tower.Update(Time.deltaTime);
+        }
+
+        public void LookAt(Vector3 pos)
+        {
+            pos.y = _tr.position.y;
+            _tr.LookAt(pos);
         }
     }
 }

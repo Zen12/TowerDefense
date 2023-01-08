@@ -7,7 +7,7 @@ namespace _Project.Scripts.Tower
     {
         private readonly List<IDamageable> _cached = new List<IDamageable>();
         
-        protected AoeTower(TowerStats stats) : base(stats)
+        protected AoeTower(TowerStats stats, ITowerView view) : base(stats, view)
         {
         }
 
@@ -25,7 +25,7 @@ namespace _Project.Scripts.Tower
                     _cached.Add(damageable);
                 }
             }
-
+            _view.LookAt(p);
             OnPerformOnUnits(_cached);
         }
 

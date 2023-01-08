@@ -13,7 +13,7 @@ namespace _Project.Scripts.Tower.Editor
             {
                 Damage = 10,
                 DelayExecution = 1f
-            });
+            }, new DummyTowerView());
 
             var damageable = new DummyDamageable();
             tower.Add(damageable);
@@ -34,7 +34,7 @@ namespace _Project.Scripts.Tower.Editor
             {
                 Damage = 10,
                 DelayExecution = 1f
-            });
+            }, new DummyTowerView());
 
             var damageable = new DummyDamageable();
             damageable.IsAlive = false;
@@ -56,7 +56,7 @@ namespace _Project.Scripts.Tower.Editor
             {
                 Damage = 10,
                 DelayExecution = 1f
-            });
+            }, new DummyTowerView());
 
             var damageable = new DummyDamageable();
             tower.Add(damageable);
@@ -79,7 +79,7 @@ namespace _Project.Scripts.Tower.Editor
                 Damage = 10,
                 DelayExecution = 1f,
                 AoeRange = 2f
-            });
+            }, new DummyTowerView());
 
             var d1 = new DummyDamageable();
             d1.Position = Vector3.zero;
@@ -106,7 +106,7 @@ namespace _Project.Scripts.Tower.Editor
                 Damage = 10,
                 DelayExecution = 1f,
                 AoeRange = 2f
-            });
+            }, new DummyTowerView());
 
             var d1 = new DummyDamageable();
             d1.Position = Vector3.zero;
@@ -134,7 +134,7 @@ namespace _Project.Scripts.Tower.Editor
                 DelayExecution = 1f,
                 AoeRange = 2f,
                 SlowTime = 2f
-            });
+            }, new DummyTowerView());
 
             var d1 = new DummyDamageable();
             d1.Position = Vector3.zero;
@@ -147,16 +147,47 @@ namespace _Project.Scripts.Tower.Editor
             // Should
             Assert.AreEqual(2f, d1.LastSlowTime);
         }
+        
+        [Test]
+        public void GIVEN_TOWER_AND_UNIT__ATTACK__SHOULD_LOOT_AT_UNIT()
+        {
+            // Given
+            var view = new DummyTowerView();
+            var tower = new AttackOneUnitTower(new TowerStats
+            {
+                Damage = 10,
+                DelayExecution = 1f
+            }, view);
+
+            var damageable = new DummyDamageable();
+            damageable.Position = Vector3.one * 400;
+            tower.Add(damageable);
+            
+            // Act
+            tower.Update(200f);
+            
+            
+            // Should
+            Assert.AreEqual(Vector3.one * 400, view.LookAtPos);
+        }
 
 
 
     }
 
 
+    internal class DummyTowerView : ITowerView
+    {
+        public Vector3 LookAtPos;
+        public void LookAt(Vector3 pos)
+        {
+            LookAtPos = pos;
+        }
+    }
 
     internal class DummyDamageable : IDamageable
     {
-        public bool IsAlive { get; set; }
+        public bool IsAlive { get; set; } = true;
 
         public float LastDamageAmount;
         public float LastSlowTime;

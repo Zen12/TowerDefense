@@ -4,7 +4,7 @@ namespace _Project.Scripts.Tower
 {
     public sealed class AttackAoeTower : AoeTower
     {
-        public AttackAoeTower(TowerStats stats) : base(stats)
+        public AttackAoeTower(TowerStats stats, ITowerView view) : base(stats, view)
         {
         }
 

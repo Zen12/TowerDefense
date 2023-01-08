@@ -8,14 +8,16 @@ namespace _Project.Scripts.Tower
     {
         protected readonly List<IDamageable> _list = new List<IDamageable>();
         protected readonly TowerStats _stats;
+        protected readonly ITowerView _view;
 
         public float CurrentAttackDistance => _stats.DamageDistance;
 
         private float _currentTime;
 
-        protected BaseTower(TowerStats stats)
+        protected BaseTower(TowerStats stats, ITowerView view)
         {
             _stats = stats;
+            _view = view;
             _currentTime = stats.DelayExecution + float.Epsilon; // immediate attack 
         }
 
@@ -49,6 +51,11 @@ namespace _Project.Scripts.Tower
         }
 
         protected abstract void OnPerformAction();
+    }
+
+    public interface ITowerView
+    {
+        void LookAt(Vector3 pos);
     }
 
     [System.Serializable]
