@@ -16,15 +16,11 @@
     - [x] Pierce
     - [x] AOE-Damage
     - [x] AOE-Slow
-- [ ] Currency
-  - [ ] Money per kill and wave
 - [ ] UI/Others
   - [ ] UI/Lose/Restart
-  - [ ] Currency
-  - [ ] AppState
   - [x] Tutorial to place one tower
   - [ ] Build for WebGL
-  - [ ] Range visual 
+  - [x] Range visual 
 
 
 ### Third Party
