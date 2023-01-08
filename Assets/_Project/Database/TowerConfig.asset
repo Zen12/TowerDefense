@@ -25,16 +25,16 @@ MonoBehaviour:
   - Stats:
       Damage: 5
       SlowTime: 0
-      DelayExecution: 7
+      DelayExecution: 2
       AoeRange: 3
       DamageDistance: 1.4
     Type: 1
     Tower: {fileID: 4160399096032104462, guid: 266df5e1dc381432184929104dfd7390, type: 3}
     Preview: {fileID: 21300000, guid: 6fe1e82baa8794bc787a2b544a9464e2, type: 3}
   - Stats:
-      Damage: 1
+      Damage: 0
       SlowTime: 4
-      DelayExecution: 3
+      DelayExecution: 2
       AoeRange: 3
       DamageDistance: 1.4
     Type: 2
