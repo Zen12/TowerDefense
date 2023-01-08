@@ -170,6 +170,55 @@ namespace _Project.Scripts.Tower.Editor
             // Should
             Assert.AreEqual(Vector3.one * 400, view.LookAtPos);
         }
+        
+        [Test]
+        public void GIVEN_TOWER_AND_UNIT__ATTACK__SHOULD_CALL_ONATTACK()
+        {
+            // Given
+            var view = new DummyTowerView();
+            var tower = new AttackOneUnitTower(new TowerStats
+            {
+                Damage = 10,
+                DelayExecution = 1f
+            }, view);
+
+            var damageable = new DummyDamageable();
+            damageable.Position = Vector3.one * 400;
+            tower.Add(damageable);
+            
+            // Act
+            tower.Update(200f);
+            
+            
+            // Should
+            Assert.AreEqual(damageable, view.OnAttack);
+            Assert.IsNull(view.OnSlow);
+        }
+        
+        [Test]
+        public void GIVEN_TOWER_AND_UNIT__ATTACK__SHOULD_CALL_ONSLOW()
+        {
+            // Given
+            var view = new DummyTowerView();
+            var tower = new SlowAoeTower(new TowerStats
+            {
+                Damage = 10,
+                DelayExecution = 1f
+            }, view);
+
+            var damageable = new DummyDamageable();
+            damageable.Position = Vector3.one * 400;
+            tower.Add(damageable);
+            
+            // Act
+            tower.Update(200f);
+            
+            
+            // Should
+            Assert.AreEqual(damageable, view.OnSlow);
+            Assert.IsNull(view.OnAttack);
+        }
+
 
 
 
@@ -179,9 +228,21 @@ namespace _Project.Scripts.Tower.Editor
     internal class DummyTowerView : ITowerView
     {
         public Vector3 LookAtPos;
-        public void LookAt(Vector3 pos)
+        public IDamageable OnAttack;
+        public IDamageable OnSlow;
+        public void OnLookAt(Vector3 pos)
         {
             LookAtPos = pos;
+        }
+
+        public void OnAttackUnit(IDamageable unit)
+        {
+            OnAttack = unit;
+        }
+
+        public void OnSlowUnit(IDamageable unit)
+        {
+            OnSlow = unit;
         }
     }
 

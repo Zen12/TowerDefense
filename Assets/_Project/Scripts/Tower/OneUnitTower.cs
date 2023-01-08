@@ -11,7 +11,7 @@ namespace _Project.Scripts.Tower
             if (_list.Count == 0)
                 return;
             
-            _view.LookAt(_list[0].Position);
+            _view.OnLookAt(_list[0].Position);
             OnPerformOnUnit(_list[0]);
         }
         protected abstract void OnPerformOnUnit(IDamageable damageable);

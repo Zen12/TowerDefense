@@ -25,7 +25,7 @@ namespace _Project.Scripts.Tower
                     _cached.Add(damageable);
                 }
             }
-            _view.LookAt(p);
+            _view.OnLookAt(p);
             OnPerformOnUnits(_cached);
         }
 

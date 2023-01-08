@@ -100,10 +100,19 @@ namespace _Project.Scripts.Unity
                 _tower.Update(Time.deltaTime);
         }
 
-        public void LookAt(Vector3 pos)
+        public void OnLookAt(Vector3 pos)
         {
             pos.y = _tr.position.y;
             _tr.LookAt(pos);
+        }
+
+        public void OnAttackUnit(IDamageable unit)
+        {
+            
+        }
+
+        public void OnSlowUnit(IDamageable unit)
+        {
         }
     }
 }

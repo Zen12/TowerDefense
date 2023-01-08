@@ -16,6 +16,8 @@ namespace _Project.Scripts.Unity
         public void TakeDamage(in float amount)
         {
             _hp -= amount;
+            if (IsAlive == false)
+                gameObject.SetActive(false);
         }
 
         public void SlowDown(in float time)

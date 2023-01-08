@@ -9,6 +9,7 @@ namespace _Project.Scripts.Tower
         protected override void OnPerformOnUnit(IDamageable damageable)
         {
             damageable.TakeDamage(_stats.Damage);
+            _view.OnAttackUnit(damageable);
         }
     }
 }

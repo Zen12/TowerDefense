@@ -13,6 +13,7 @@ namespace _Project.Scripts.Tower
             foreach (var damageable in list)
             {
                 damageable.SlowDown(_stats.SlowTime);
+                _view.OnSlowUnit(damageable);
             }
         }
     }

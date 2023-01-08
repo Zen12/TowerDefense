@@ -55,7 +55,10 @@ namespace _Project.Scripts.Tower
 
     public interface ITowerView
     {
-        void LookAt(Vector3 pos);
+        void OnLookAt(Vector3 pos);
+
+        void OnAttackUnit(IDamageable unit);
+        void OnSlowUnit(IDamageable unit);
     }
 
     [System.Serializable]
