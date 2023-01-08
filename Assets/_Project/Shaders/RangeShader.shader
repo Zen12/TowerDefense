@@ -51,8 +51,11 @@ Shader "Custom/RangeShader"
             for (int i=0; i<_TowerAmount; i++)
             {
                 float dist = distance(IN.worldPos, _TowerPoses[i]);
-                float diffDist = _TowerRanges[i] - dist;
-                c = lerp(c, fixed4(1, 0, 0, 1), clamp(sign(diffDist), 0, 1)  * 0.1);
+                if (dist <= _TowerRanges[i])
+                {
+                    c = lerp(c, fixed4(1, 0, 0, c.a), 0.4);
+                    break;
+                }
             }
 
             
