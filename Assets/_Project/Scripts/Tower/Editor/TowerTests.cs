@@ -25,7 +25,29 @@ namespace _Project.Scripts.Tower.Editor
             // Should
             Assert.AreEqual(10, damageable.LastDamageAmount);
         }
-        
+
+        [Test]
+        public void GIVEN_TOWER_AND_DEAD_UNIT__ATTACK__SHOULD_NOT_TAKE_DAMAGE()
+        {
+            // Given
+            var tower = new AttackOneUnitTower(new TowerStats
+            {
+                Damage = 10,
+                DelayExecution = 1f
+            });
+
+            var damageable = new DummyDamageable();
+            damageable.IsAlive = false;
+            tower.Add(damageable);
+            
+            // Act
+            tower.Update(200f);
+            
+            
+            // Should
+            Assert.AreEqual(0, damageable.LastDamageAmount);
+        }
+
         [Test]
         public void GIVEN_TOWER_UNIT_EXIT_TOWER__SHOULD_DAMAGE()
         {
@@ -134,6 +156,8 @@ namespace _Project.Scripts.Tower.Editor
 
     internal class DummyDamageable : IDamageable
     {
+        public bool IsAlive { get; set; }
+
         public float LastDamageAmount;
         public float LastSlowTime;
         public Vector3 Position { get; set; }

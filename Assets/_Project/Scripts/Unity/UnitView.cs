@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace _Project.Scripts.Unity
 {
-    public class UnitView : MonoBehaviour, IUnit, IMovable, IDamageable
+    public class UnitView : MonoBehaviour, IMovable, IDamageable
     {
         [SerializeField] private float _hp = 10;
         public bool IsAlive => _hp > 0f;

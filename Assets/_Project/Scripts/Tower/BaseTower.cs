@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using _Project.Scripts.SpawnSystems;
 using UnityEngine;
 
 namespace _Project.Scripts.Tower
@@ -31,6 +32,7 @@ namespace _Project.Scripts.Tower
         public void Update(in float deltaTime)
         {
             _currentTime += deltaTime;
+            _list.RemoveAll(_ => _.IsAlive == false);
             if (_currentTime >= _stats.DelayExecution)
             {
                 if (_list.Count > 0)
@@ -59,7 +61,7 @@ namespace _Project.Scripts.Tower
         public float DamageDistance;
     }
 
-    public interface IDamageable
+    public interface IDamageable : IUnit
     {
         void TakeDamage(in float amount);
 
