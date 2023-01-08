@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using _Project.Scripts.Movables;
 using _Project.Scripts.SpawnSystems;
 using _Project.Scripts.Tower;
@@ -12,16 +13,29 @@ namespace _Project.Scripts.Unity
         public bool IsAlive => _hp > 0f;
         private Transform _tr;
 
+        private Coroutine _lastSlowRoutine;
+
+
+        public float SlowDownFactor { get; private set; } = 1;
 
         public void TakeDamage(in float amount)
         {
             _hp -= amount;
-            if (IsAlive == false)
-                gameObject.SetActive(false);
         }
 
         public void SlowDown(in float time)
         {
+            if (_lastSlowRoutine != null)
+                StopCoroutine(_lastSlowRoutine);
+
+            _lastSlowRoutine = StartCoroutine(SlowRoutine(time));
+        }
+
+        private IEnumerator SlowRoutine(float time)
+        {
+            SlowDownFactor = 0.4f;
+            yield return new WaitForSeconds(time);
+            SlowDownFactor = 1.0f;
         }
 
         public Vector3 Position
@@ -39,7 +53,12 @@ namespace _Project.Scripts.Unity
         public void OnFinishPath()
         {
             _hp = 0;
-            gameObject.SetActive(false);
+            UpdateView();
+        }
+
+        public void UpdateView()
+        {
+            gameObject.SetActive(IsAlive);
         }
 
 

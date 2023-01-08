@@ -53,7 +53,8 @@ namespace _Project.Scripts.Movables
                 var nexTime = time + deltaTime;
                 var nextPos = _path.GetPositionFromTime(nexTime);
                 var dir = (nextPos - data.Target.Position).normalized;
-                data.Target.Position += dir * data.Speed;
+                data.Target.Position +=
+                    Vector3.Lerp(Vector3.zero, dir * data.Speed, data.Target.SlowDownFactor);
                 data.Target.Rotation = Quaternion.LookRotation(dir);
             }
 
@@ -82,6 +83,8 @@ namespace _Project.Scripts.Movables
 
     public interface IMovable
     {
+        public float SlowDownFactor { get; }
+
         Vector3 Position { get; set; }
         Quaternion Rotation { get; set; }
 

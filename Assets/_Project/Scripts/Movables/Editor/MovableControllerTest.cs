@@ -106,6 +106,25 @@ namespace _Project.Scripts.Movables.Editor
             // Should
             Assert.AreEqual(1, listener.Movable.Count);
         }
+        
+        [Test]
+        public void GIVEN_1_MOVABLE_WITH_SLOW_FACTOR__MOVE_TILL_END__SHOULD_NOT_BE_REMOVED()
+        {
+            // Given
+            var listener = new DummyListener();
+            var path = new DummyPath();
+            var controller = new MovableController(path);
+            controller.Register(listener);
+            var movable = new DummyMovable();
+            movable.SlowDownFactor = 0.5f;
+            controller.RegisterMovable(movable, 1f);
+            
+            // Act
+            controller.Update(0.1f);
+            
+            // Should
+            Assert.AreEqual(0, listener.Movable.Count);
+        }
     }
 
 }

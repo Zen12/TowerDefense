@@ -108,11 +108,22 @@ namespace _Project.Scripts.Unity
 
         public void OnAttackUnit(IDamageable unit)
         {
-            
+            // because it's engine specific, we can cast
+            var unityView = (UnitView)unit;
+            if (unityView != null)
+            {
+                unityView.UpdateView();
+            }
         }
 
         public void OnSlowUnit(IDamageable unit)
         {
+            // because it's engine specific, we can cast
+            var unityView = (UnitView)unit;
+            if (unityView != null)
+            {
+                unityView.UpdateView();
+            }
         }
     }
 }
