@@ -13,7 +13,7 @@ namespace _Project.Scripts
 {
     public class EntryPoint : MonoBehaviour
     {
-        [SerializeField] private WaveSettings _settings;
+        [SerializeField] private WaveConfig _waveConfig;
         [SerializeField] private UnitConfig _unitConfig;
         
         [SerializeField] private PathAdapter _path;
@@ -31,10 +31,10 @@ namespace _Project.Scripts
         {
             _token = new CancellationTokenSource();
             var router = new RouterWaveToMovable();
-            var winLose = new WinLoseChecker(20);
+            var winLose = new WinLoseChecker(_waveConfig.TotalLives);
             var move = new MovableController(_path, winLose);
             var unitFabric = new UnitFabric(_unitConfig);
-            var wave = new WaveController(_settings, unitFabric, _token.Token);
+            var wave = new WaveController(_waveConfig.WaveSettings, unitFabric, _token.Token);
             var place = new ObjectPlacer.ObjectBoundsPlacer(_placeForTower.GetBounds());
             var unityPlacer = new TowerPlacerUnityController(place, _camera, _placeMask);
             

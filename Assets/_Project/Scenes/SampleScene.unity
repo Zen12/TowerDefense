@@ -2825,11 +2825,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fca1b26a5954d33a24290680a1ca76e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _settings:
-    Waves:
-    - Delay: 1
-      Type: 0
-      Amount: 4
+  _waveConfig: {fileID: 11400000, guid: fa500485c68cc4e4a8de10c68db054d5, type: 2}
   _unitConfig: {fileID: 11400000, guid: 5e627e188d09347c6a8b4a76a130662b, type: 2}
   _path: {fileID: 268517545}
   _placeForTower: {fileID: 1973153031}
