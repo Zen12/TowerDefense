@@ -82,12 +82,12 @@ namespace _Project.Scripts.SpawnSystems
 
             for (int i = 0; i < wave.Amount; i++)
             {
-                var obj = _fabric.CreateUnit(wave.Type);
-                _list.Add(obj);
-                OnUnitCreate(obj);
                 await Task.Delay(TimeSpan.FromSeconds(wave.Delay), _token);
                 if (_token.IsCancellationRequested)
                     break;
+                var obj = _fabric.CreateUnit(wave.Type);
+                _list.Add(obj);
+                OnUnitCreate(obj);
             }
             
             IsSpawning = false;
