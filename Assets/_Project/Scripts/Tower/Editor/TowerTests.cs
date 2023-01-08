@@ -1,3 +1,4 @@
+using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
 
@@ -215,7 +216,7 @@ namespace _Project.Scripts.Tower.Editor
             
             
             // Should
-            Assert.AreEqual(damageable, view.OnSlow);
+            Assert.IsTrue(view.OnSlows.Contains(damageable));
             Assert.IsNull(view.OnAttack);
         }
 
@@ -231,6 +232,9 @@ namespace _Project.Scripts.Tower.Editor
         public IDamageable OnAttack;
         public IDamageable OnSlow;
         
+        public IDamageable[] OnAttacks;
+        public IDamageable[] OnSlows;
+        
         public void OnLookAt(Vector3 pos)
         {
             LookAtPos = pos;
@@ -243,7 +247,8 @@ namespace _Project.Scripts.Tower.Editor
 
         public void OnAttackUnits(Vector3 pos, IDamageable[] unit)
         {
-            
+            LookAtPos = pos;
+            OnAttacks = unit;
         }
 
         public void OnSlowUnit(IDamageable unit)
@@ -253,6 +258,8 @@ namespace _Project.Scripts.Tower.Editor
 
         public void OnSlowUnits(Vector3 pos, IDamageable[] unit)
         {
+            LookAtPos = pos;
+            OnSlows = unit;
         }
     }
 
