@@ -10,21 +10,19 @@
   - [x] Movement of creature
   - [x] Spawn/Wave system
   - [x] Win/Lose system
-- [ ] Tower Behaviour
+- [x] Tower Behaviour
   - [x] Place/Spawn with visual assistant
-  - [ ] Attack 
-    - [ ] Pierce
-    - [ ] AOE-Damage
-    - [ ] AOE-Slow
-  - [ ] Upgrade
+  - [x] Attack 
+    - [x] Pierce
+    - [x] AOE-Damage
+    - [x] AOE-Slow
 - [ ] Currency
   - [ ] Money per kill and wave
-  - [ ] Money for upgrade
 - [ ] UI/Others
   - [ ] UI/Lose/Restart
   - [ ] Currency
   - [ ] AppState
-  - [ ] Tutorial to place one tower
+  - [x] Tutorial to place one tower
   - [ ] Build for WebGL
 
 
