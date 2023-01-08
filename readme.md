@@ -1,4 +1,7 @@
-### TODO:
+### Description
+Playable WebGL build: https://andreigusan.itch.io/towerdefense
+
+### Roadmap
 - [x] Project and assets:
   - [x] Find/Integrate assets for TD and creatures
   - [x] Find/Integrate base UI sprites
@@ -16,12 +19,12 @@
     - [x] Pierce
     - [x] AOE-Damage
     - [x] AOE-Slow
-- [ ] UI/Others
+- [x] UI/Others
   - [x] UI/Lose/Restart
   - [x] Tutorial to place one tower
   - [x] Range visual 
-  - [ ] Build for WebGL
-  - [ ] Polish UI
+  - [x] Build for WebGL
+  - [x] Polish UI
 
 
 ### Third Party
